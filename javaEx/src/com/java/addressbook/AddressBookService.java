@@ -13,8 +13,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class AddressBookService {
-		static final String filename ="file.txt";
-
+	static final String rootPath = System.getProperty("user.dir") + "\\";
+	static final String filename = rootPath + "AdressBook.txt";
 	protected void addressList() {
 		List<AddressBook> adr = addressBookList();
 		for (int i = 0; i < adr.size(); i++) {
