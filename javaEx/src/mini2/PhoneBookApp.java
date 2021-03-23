@@ -18,12 +18,16 @@ public class PhoneBookApp {
 	int num = scanner.nextInt();
 	
 	if(num==1) {
+		System.out.print("<1.리스트>\n");
 		listPhoneBook();
 	}else if(num==2) {
+		System.out.print("<2.등록>\n");
 		insertPhoneBook();
 	}else if(num==3) {
+		System.out.print("<3.삭제>\n");
 		deletePhoneBook();
 	}else if(num==4) {
+		System.out.print("<4.검색>\n");
 		searchPhoneBook();
 	}else if(num==5) {
 		System.out.println("***********************************");
@@ -41,17 +45,17 @@ public class PhoneBookApp {
 		
 		while(it.hasNext()) {
 			PhoneBookVo vo=it.next();
-			System.out.printf("%d,%s,%s,%s%n",vo.getId(),vo.getName(),vo.getHp(),vo.getTel());
+			System.out.printf("%d.%s%s     %s%n",vo.getId(),vo.getName(),vo.getHp(),vo.getTel());
 			
 		}
 	}
 	private static void insertPhoneBook() {
 		Scanner scanner=new Scanner(System.in);
-		System.out.print("이름:");
+		System.out.print(">이름:");
 		String name=scanner.next();
-		System.out.print("휴대폰 번호:");
+		System.out.print(">휴대전화:");
 		String hp=scanner.next();
-		System.out.print("집 전화번호");
+		System.out.print(">집전화:");
 		String tel=scanner.next();
 		
 		PhoneBookVo vo=new PhoneBookVo(name,hp,tel);
@@ -59,24 +63,24 @@ public class PhoneBookApp {
 		PhoneBookDao dao=new PhoneBookDaoOracleImpl();
 		boolean success=dao.insert(vo);
 		
-		System.out.println("phone_book INSERT:"+(success?"성공":"실패"));
+		System.out.println("phone_book INSERT:"+(success?"[등록되었습니다.]":"실패"));
 		scanner.close();
 	}
 private static void deletePhoneBook() {
 	Scanner scanner=new Scanner(System.in);
-	System.out.print("삭제할 기록:");
+	System.out.print(">번호:");
 	long PhoneBookId=scanner.nextLong();
 	
 	PhoneBookDao dao=new PhoneBookDaoOracleImpl();
 	boolean success=dao.delete(PhoneBookId);
 	
-	System.out.println("Phone_book DELETE:"+(success? "성공":"실패"));
+	System.out.println("Phone_book DELETE:"+(success? "[삭제되었습니다.]":"실패"));
 	scanner.close();
 }
 
 private static void searchPhoneBook() {
 	Scanner scanner=new Scanner(System.in);
-	System.out.print("검색어:");
+	System.out.print(">이름:");
 	String keyword=scanner.next();
 	
 	PhoneBookDao dao=new PhoneBookDaoOracleImpl();
